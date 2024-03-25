@@ -1,32 +1,57 @@
 $(document).ready(function() {
-    let balance = 0;
+    $('#nameForm').submit(function(event) {
+        event.preventDefault();
 
-    function updateBalance(amount) {
-        balance += amount;
-        $('#balance').text('Balance: $' + balance.toFixed(2));
-    }
+        var userName = $('#userName').val().trim();
+        if (userName === '') {
+            alert('Please enter your name.');
+            return;
+        }
 
-    $('#addTransaction').click(function() {
-        const type = $('#type').val();
-        const amount = parseFloat($('#amount').val());
-        const description = $('#description').val();
+        $('#nameForm').hide();
+        $('#mainPage').show();
+        $('#userGreeting').text('Hello, ' + userName);
+    });
 
-        if (isNaN(amount) || amount === 0 || description === '') {
+    $('#incomeForm').submit(function(event) {
+        event.preventDefault();
+
+        var amount = parseFloat($('#incomeAmount').val());
+        var description = $('#incomeDescription').val();
+
+        if (isNaN(amount) || amount <= 0 || description === '') {
             alert('Please enter valid amount and description.');
             return;
         }
 
-        if (type === 'expense') {
-            updateBalance(-amount);
-        } else {
-            updateBalance(amount);
+        $('#incomeModal').modal('hide');
+
+        var transaction = '<p class="income"><strong>Income:</strong> Rp ' + amount.toFixed(2) + ' - ' + description + '</p>';
+        $('.box:eq(1)').append(transaction);
+
+        var balance = parseFloat($('.box:eq(0) p').text().replace('Rp ', ''));
+        var newBalance = balance + amount;
+        $('.box:eq(0) p').text('Rp ' + newBalance.toFixed(2));
+    });
+
+    $('#expenseForm').submit(function(event) {
+        event.preventDefault();
+
+        var amount = parseFloat($('#expenseAmount').val());
+        var description = $('#expenseDescription').val();
+
+        if (isNaN(amount) || amount <= 0 || description === '') {
+            alert('Please enter valid amount and description.');
+            return;
         }
 
-        const transaction = `<li>${type.toUpperCase()}: $${amount.toFixed(2)} - ${description}</li>`;
-        $('#transactions').append(transaction);
+        $('#expenseModal').modal('hide');
 
-        // Clear input fields
-        $('#amount').val('');
-        $('#description').val('');
+        var transaction = '<p class="expense"><strong>Expense:</strong> Rp ' + amount.toFixed(2) + ' - ' + description + '</p>';
+        $('.box:eq(1)').append(transaction);
+
+        var balance = parseFloat($('.box:eq(0) p').text().replace('Rp ', ''));
+        var newBalance = balance - amount;
+        $('.box:eq(0) p').text('Rp ' + newBalance.toFixed(2));
     });
 });
