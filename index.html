@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Money Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Money Tracker</h1>
-        <div id="balance">Balance: $0</div>
-        <div>
-            <label for="type">Type:</label>
-            <select id="type">
-                <option value="expense">Expense</option>
-                <option value="income">Income</option>
-            </select>
-        </div>
-        <div>
-            <label for="amount">Amount:</label>
-            <input type="number" id="amount" step="0.01">
-        </div>
-        <div>
-            <label for="description">Description:</label>
-            <input type="text" id="description">
-        </div>
-        <button id="addTransaction">Add Transaction</button>
-        <ul id="transactions"></ul>
+    <div class="navbar">
+        <img src="assets/pictures/uang2.png" alt="Uang" id="uang">
+        <p>Hello, Ucok</p>
+        <nav>
+            <ul>
+                <li><a href="#main">Main</a></li>
+                <li><a href="#income">Income</a></li>
+                <li><a href="#outcome">Outcome</a></li>
+                <li><a href="#aboutus">About Us</a></li>
+            </ul> 
+        </nav> 
     </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Balance</h2>
+            <p>Rp 0.00</p>
+        </div>
+        <div class="box">
+            <h2>Transaction</h2>
+            <p>Belum ada transaksi sejauh ini.</p>
+        </div>
+    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
