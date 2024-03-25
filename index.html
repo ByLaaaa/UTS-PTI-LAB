@@ -5,34 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Money Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="navbar">
-        <img src="assets/pictures/uang2.png" alt="Uang" id="uang">
-        <p>Hello, Ucok</p>
-        <nav>
-            <ul>
-                <li><a href="#main">Main</a></li>
-                <li><a href="#income">Income</a></li>
-                <li><a href="#outcome">Outcome</a></li>
-                <li><a href="#aboutus">About Us</a></li>
-            </ul> 
-        </nav> 
+    <!-- Name Input Form -->
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome to Money Tracker!</h5>
+                        <form id="nameForm">
+                            <div class="form-group">
+                                <label for="userName">Enter Your Name:</label>
+                                <input type="text" class="form-control" id="userName" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Start</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <div class="box">
-            <h2>Balance</h2>
-            <p>Rp 0.00</p>
+    <!-- Main Page  -->
+    <div id="mainPage" style="display: none;">
+        <div class="navbar bg-body-tertiary">
+            <img src="assets/pictures/uang2.png" alt="Uang" id="uang">
+            <p id="userGreeting"></p>
+            <nav>
+                <ul>
+                    <li><a href="#main">Main</a></li>
+                    <li><a href="#income" data-toggle="modal" data-target="#incomeModal">Income</a></li>
+                    <li><a href="#outcome" data-toggle="modal" data-target="#expenseModal">Expense</a></li>
+                    <li><a href="#aboutus">About Us</a></li>
+                </ul> 
+            </nav> 
         </div>
-        <div class="box">
-            <h2>Transaction</h2>
-            <p>Belum ada transaksi sejauh ini.</p>
+
+        <div class="container">
+            <div class="box">
+                <h2>Balance</h2>
+                <p>Rp 0.00</p>
+            </div>
+            <div class="box">
+                <h2>Transaction</h2>
+                <div id="transactionList"></div>
+            </div>
         </div>
     </div>
     
+    <!-- Income Modal -->
+<div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="incomeModalLabel">Add Income</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="incomeForm">
+                    <div class="form-group">
+                        <label for="incomeAmount">Amount:</label>
+                        <input type="number" class="form-control" id="incomeAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeDescription">Description:</label>
+                        <input type="text" class="form-control" id="incomeDescription" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Income</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Expense Modal -->
+<div class="modal fade" id="expenseModal" tabindex="-1" aria-labelledby="expenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="expenseModalLabel">Add Expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount:</label>
+                        <input type="number" class="form-control" id="expenseAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDescription">Description:</label>
+                        <input type="text" class="form-control" id="expenseDescription" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your custom script -->
     <script src="script.js"></script>
 </body>
 </html>
